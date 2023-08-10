@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"               
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Registration</title> 
+        <link rel="stylesheet" href="index.css"></link>
+    </h:head>
+    <h:body>
+        
+        <h:form id="f1">
+            <center>
+            <p:growl id="growl" sticky="true" showDetail="true" />  
+            <h2><span style="color: red">S</span>tudent <span style="color: red">R</span>egistration <span style="color: red">F</span>orm</h2>
+            <h:panelGrid columns="2">                                            
+             <h:outputLabel for="name" value="FirstName" />
+             <p:inputText id="name" value="#{bean.firstname}" placeholder="Enter Your First Name" validatorMessage="Entered Name is not valid Please Enter valid name" requiredMessage="First Name is mandatory" >
+                
+             <p:ajax process="@this" update="@form"/>
+             </p:inputText>
+      
+             
+             <h:outputLabel for="lastname" value="LastName"/>
+             <p:inputText id="lastname" value="#{bean.lastname}" placeholder="Enter Your Last Name" >
+             <p:ajax process="@this" update="@form"/>
+             </p:inputText>
+              
+             <h:outputLabel for="age" value="Age"/>
+             <p:inputText id="age" value="#{bean.age}" placeholder="Enter Your Age" >
+             <p:ajax process="@this" update="@form"/>
+             </p:inputText>
+              
+             <h:outputLabel for="phone" value="PhoneNo."/>
+             <p:inputText id="phone" value="#{bean.phone}" placeholder="Enter Your PhoneNumber" >
+             <p:ajax process="@this" update="@form"/>
+             </p:inputText>
+             
+             <h:outputLabel for="gen" value="Gender"/>
+             <p:selectOneRadio id="gen" value="#{bean.gender}">
+             <f:selectItem itemLabel="Male" itemValue="M"/>
+             <f:selectItem itemLabel="Female" itemValue="F"/>
+             <p:ajax process="@this" update="@form"/>
+             </p:selectOneRadio>
+             
+             <h:outputLabel for="email" value="E-mail"/>
+             <p:inputText id="email" value="#{bean.email}" placeholder="Enter Your E-mail ID" >
+             <p:ajax process="@this" update="@form"/>
+             </p:inputText>
+             
+             <h:outputLabel for="city" value="City"/>
+             <p:inputText id="city" value="#{bean.city}" placeholder="Enter Your CityName">
+             <p:ajax process="@this" update="@form"/>
+             </p:inputText>
+
+             <h:outputLabel for="hobbies" value="Hobbies"/>
+             <p:selectManyCheckbox id="hobbies" value="#{bean.hobbies}">
+             <f:selectItem itemLabel="Yoga" itemValue="Yoga"/>
+             <f:selectItem itemLabel="Music" itemValue="Music"/>
+             <f:selectItem itemLabel="Reading book" itemValue="Reading book"/>
+             <f:selectItem itemLabel="Cricket" itemValue="Cricket"/>
+             <f:selectItem itemLabel="Coding" itemValue="Coding"/>
+             <f:selectItem itemLabel="Travelling" itemValue="Travelling"/>
+              <p:ajax process="@this" update="@form"/>
+             </p:selectManyCheckbox>
+
+             <h:outputLabel for="txt3" value="HigherEducation"/>
+             <h:selectOneMenu id="txt3" value="#{bean.highereducation}" >
+                    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="10th" itemValue="10th"/>
+                    <f:selectItem itemLabel="12th" itemValue="12th"/>
+                    <f:selectItem itemLabel="Diploma" itemValue="Diploma"/>
+                    <f:selectItem itemLabel="BCA" itemValue="Diploma"/>
+                    <f:selectItem itemLabel="B-Tech" itemValue="B-Tech"/>
+                    <f:selectItem itemLabel="M-Tech" itemValue="M-Tech"/>
+                    <p:ajax process="@this" update="@form"/>
+             </h:selectOneMenu>
+             </h:panelGrid> 
+                
+             
+            <p:commandButton value="Save"  action ="#{bean.save}" class="btn">
+                   <p:ajax process="@this" update="@form"/>
+                 <p:dialog widgetVar="dlg2" minHeight="40" width="350" showEffect="fade"></p:dialog>
+             </p:commandButton> 
+               
+            <p:commandButton id="fetchdata" value="LookUp"  action="#{bean.lookUp}" oncomplete="PF('dlg1').show()" class="btn">
+            <p:ajax process="@this" update="@form"/>
+            </p:commandButton> 
+               
+            <p:commandButton id="update" value="Update"  onclick="" actionListener="#{bean.update}" class="btn" >
+                 <p:ajax process="@this" update="@form"/>
+            </p:commandButton>
+            <p:commandButton id="delete" value="Delete"  onclick="" actionListener="#{bean.delete}" class="btn">
+                 <p:ajax process="@this" update="@form"/>
+            </p:commandButton>
+               <p:commandButton id="reset" value="Reset"  onclick="" actionListener="#{bean.reset}" class="btn">
+                 <p:ajax process="@this" update="@form"/>
+            </p:commandButton>
+            
+           
+
+            <p:dialog widgetVar="dlg1" rendered="#{bean.showDialog}" class="dialog" > 
+                <p:dataTable var="st" value="#{bean.stuList}" class="tb">   
+            <p:column headerText="Id" >
+            <p:commandLink update="@form" immediate ="true" process ="@this" actionListener = "#{bean.fill(st)}" >
+            <h:outputText value="#{st.id}" />
+            </p:commandLink>                 
+            </p:column>   
+            <p:column headerText="FirstName">
+                <p:commandLink update="@form" immediate ="true" process ="@this" actionListener = "#{bean.fill(st)}" >
+                <h:outputText value="#{st.firstName}" class="tfn"/>      
+                </p:commandLink>
+            </p:column> 
+            <p:column headerText="LastName">
+                <h:outputText value="#{st.lastName}" />
+            </p:column>
+                <p:column headerText="Age">
+                    <h:outputText value="#{st.age}" />
+            </p:column>
+                <p:column headerText="Gender">
+                    <h:outputText value="#{st.gender}" />
+            </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{st.email}" />
+            </p:column>
+                <p:column headerText="City">
+                    <h:outputText value="#{st.city}" />
+            </p:column>
+                <p:column headerText="Hobbies">
+                    <h:outputText value="#{st.hobbies}" />
+            </p:column>
+                <p:column headerText="HigherEducation">
+                    <h:outputText value="#{st.highereducation}" />
+            </p:column>
+            </p:dataTable>
+            </p:dialog>
+            </center>
+
+        </h:form>
+    </h:body>
+</html>
+

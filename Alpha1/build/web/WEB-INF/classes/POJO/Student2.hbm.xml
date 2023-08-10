@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 Feb, 2023 2:42:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.Student2" table="student2" catalog="world" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="FirstName" length="50" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LastName" length="45" />
+        </property>
+        <property name="age" type="int">
+            <column name="Age" length="11"/>
+        </property>
+        <property name="phone" type="string">
+            <column name="Phone" length="12"/>
+        </property>
+          <property name="gender" type="string">
+            <column name="Gender" length="2"/>
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45"/>
+        </property>
+        <property name="city" type="string">
+            <column name="City" length="45"/>
+        </property>
+        <property name="hobbies" type="string">
+            <column name="Hobbies" length="95"/>
+        </property>
+      <property name="highereducation" type="string">
+            <column name="HigherEducation" length="45"/>
+        </property>
+ 
+    </class>
+</hibernate-mapping>

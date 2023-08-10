@@ -1,0 +1,44 @@
+body{
+    text-decoration: none;
+    background-image: url(./bg2.jpg);
+   
+}
+
+h2 {
+  color: black;
+  text-shadow: 4px 6px 6px yellow;
+}
+
+
+#f1{
+    background-image:url(./bg.jpg);
+    margin-left: 250px; 
+    margin-top: 100px;
+    text-align: center;
+    padding: 30px;
+    width: max-content;
+    border: 2px dashed red; 
+    box-shadow: 2px 2px 2px yellow;
+    border-radius: 25px;
+}
+
+
+.btn:hover
+{
+   border: 1px solid blue;
+   background-color: pink;
+   border-radius: 15px;
+}
+.btn
+{
+ margin: 15px;   
+}
+
+.tfn
+{
+    color: blue;
+}
+
+input{
+    background-color: yellow;
+}
